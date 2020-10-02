@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:notelist/screens/notelist.dart';
-import 'package:notelist/screens/notedetails.dart';
+import 'package:notelist/screens/notelist.dart';
+// import 'package:notelist/screens/notedetails.dart';
 
 
 void main() {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       title: 'Note List',
-      home: NoteDetails(),
+      home: NoteList(),
     );
   }
 }

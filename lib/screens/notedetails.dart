@@ -2,24 +2,41 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NoteDetails extends StatefulWidget {
+
+  String appBarTitle;
+  NoteDetails(this.appBarTitle);
+
   @override
   State<StatefulWidget> createState() {
-    return NoteDetailsState();
+    return NoteDetailsState(this.appBarTitle);
   }
 }
 
 class NoteDetailsState extends State<NoteDetails> {
   static var _priorties = ['High', 'Low'];
 
+  String appBarTitle;
+
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
+  NoteDetailsState(this.appBarTitle);
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: () {
+        homePage();
+      },
+      child: Scaffold(
       appBar: AppBar(
-        title: Text('Edit Note'),
+        title: Text(appBarTitle),
+        leading: IconButton(icon: Icon(
+            Icons.arrow_back),
+            onPressed: () {
+              homePage();
+            }
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 18.0, right: 10.0, left: 10.0),
@@ -43,8 +60,8 @@ class NoteDetailsState extends State<NoteDetails> {
                 }
               ),
             ),
-            
-            //Second Element 
+
+            //Second Element
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child:  TextField(
@@ -60,7 +77,7 @@ class NoteDetailsState extends State<NoteDetails> {
                 ),
               ),
             ),
-            
+
             //Third Element
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
@@ -119,6 +136,11 @@ class NoteDetailsState extends State<NoteDetails> {
           ],
         ),
       )
-    );
+    ));
   }
+
+  void homePage () {
+    Navigator.pop(context);
+  }
+
 }
