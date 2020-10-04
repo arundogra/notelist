@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notelist/screens/notedetails.dart';
 
+//Notelist StateFulWidget
 class NoteList extends StatefulWidget {
 
   @override
@@ -20,6 +21,10 @@ class NoteListState extends State<NoteList> {
       ),
       body: getNoteListView(),
       floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(21.0),
+            side: BorderSide(color: Colors.white, width: 6.0)
+        ),
         onPressed: () {
           debugPrint('Test Floating Butoon');
           navigatePages('Add Note');
@@ -29,6 +34,8 @@ class NoteListState extends State<NoteList> {
       ),
     );
   }
+
+  //Get Notelist
   ListView getNoteListView () {
     TextStyle textStyle = Theme.of(context).textTheme.subtitle1;
     return ListView.builder(
@@ -47,6 +54,7 @@ class NoteListState extends State<NoteList> {
               title: Text('Title'),
               subtitle: Text('Date'),
               trailing: Icon(Icons.delete, color: Colors.grey,),
+
               onTap: (){
                 debugPrint('test');
                 navigatePages('Edit Note');

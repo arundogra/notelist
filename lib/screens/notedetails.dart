@@ -29,6 +29,7 @@ class NoteDetailsState extends State<NoteDetails> {
         homePage();
       },
       child: Scaffold(
+
       appBar: AppBar(
         title: Text(appBarTitle),
         leading: IconButton(icon: Icon(
@@ -95,16 +96,21 @@ class NoteDetailsState extends State<NoteDetails> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+              padding: EdgeInsets.only(top: 15.0, bottom: 15.0, right: 15.0, left: 15.0),
               child: Row(
                 children: <Widget>[
                   Expanded(
                     child: RaisedButton(
-                      color: Theme.of(context).primaryColorDark,
-                      textColor: Theme.of(context).primaryColorLight,
+                      color: Colors.redAccent[100],
+                      textColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          side: BorderSide(color: Colors.white, width: 3.0)
+                      ),
                       child: Text(
                         'Save',
                         textScaleFactor: 1.5,
+
                       ),
                       onPressed: () {
                         setState(() {
@@ -114,11 +120,15 @@ class NoteDetailsState extends State<NoteDetails> {
                     ),
                   ),
 
-                  Container(width: 5.0,),
+                  Container(width: 100.0,),
                   Expanded(
                     child: RaisedButton(
-                      color: Theme.of(context).primaryColorDark,
-                      textColor: Theme.of(context).primaryColorLight,
+                      color: Colors.redAccent[100],
+                      textColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          side: BorderSide(color: Colors.white, width: 3.0)
+                      ),
                       child: Text(
                         'Delete',
                         textScaleFactor: 1.5,
