@@ -31,6 +31,8 @@ class NoteDetailState extends State<NoteDetail> {
   TextEditingController descriptionController = TextEditingController();
 
   NoteDetailState(this.note, this.appBarTitle);
+  var _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
 
@@ -53,7 +55,9 @@ class NoteDetailState extends State<NoteDetail> {
             }
         ),
       ),
-      body: Padding(
+      body: Form(
+        key: _formKey,
+      child: Padding(
         padding: EdgeInsets.only(top: 18.0, right: 10.0, left: 10.0),
         child: ListView(
           children: <Widget>[
@@ -80,8 +84,13 @@ class NoteDetailState extends State<NoteDetail> {
             //Second Element
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-              child:  TextField(
+              child:  TextFormField(
                 controller: titleController,
+                validator: (String value) {
+                  if(value.isEmpty) {
+                    return 'Title Cannot be empty';
+                  }
+                },
                 onChanged: (value) {
                   debugPrint('Test');
                   updateTitle();
@@ -98,8 +107,13 @@ class NoteDetailState extends State<NoteDetail> {
             //Third Element
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-              child:  TextField(
+              child:  TextFormField(
                 controller: descriptionController,
+                validator: (String value) {
+                  if(value.isEmpty) {
+                    return 'Description cannot be empty';
+                  }
+                },
                 onChanged: (value) {
                   debugPrint('Description');
                   updateDescription();
@@ -131,8 +145,9 @@ class NoteDetailState extends State<NoteDetail> {
                       ),
                       onPressed: () {
                         setState(() {
-                          debugPrint('Save button clicked');
-                          _save();
+                          if(_formKey.currentState.validate()) {
+                            _save();
+                          }
                         });
                       },
                     ),
@@ -165,6 +180,7 @@ class NoteDetailState extends State<NoteDetail> {
           ],
         ),
       )
+      ),
     ));
   }
 
